@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package monday;
+
+service MondayService {
+  rpc GetProjects(Empty) returns (GetProjectsResponse) {}
+}
+
+message Empty {}
+
+message GetProjectsResponse {
+  repeated Project projects = 1;
+}
+
+message Project {
+  string name = 1;
+}

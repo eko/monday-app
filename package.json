@@ -1,0 +1,29 @@
+{
+    "name": "monday-ui",
+    "version": "0.1.0",
+    "main": "main.js",
+    "build": {
+        "appId": "com.monday.app",
+        "files": [
+            "build/*"
+        ],
+        "directories": {
+            "buildResources": "assets"
+        }
+    },
+    "scripts": {
+        "start": "electron .",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
+    },
+    "devDependencies": {
+        "electron": "^6.0.0",
+        "electron-builder": "^21.2.0"
+    },
+    "dependencies": {
+        "electron-sudo": "^4.0.12",
+        "google-protobuf": "^3.9.0",
+        "grpc": "^1.22.2",
+        "sudo-prompt": "^9.0.0"
+    }
+}
