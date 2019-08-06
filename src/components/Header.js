@@ -11,9 +11,11 @@ class Header extends Component {
                         <button class="btn btn-large btn-default active">
                             <span class="icon icon-home"></span>
                         </button>
+
                         <button class="btn btn-large btn-default">
                             <span class="icon icon-megaphone"></span>
                         </button>
+
                         <button class="btn btn-large btn-default">
                             <span class="icon icon-arrows-ccw"></span>
                         </button>
