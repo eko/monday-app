@@ -25,14 +25,14 @@ const updateTrayIcon = () => {
     tray.setImage(getIcon())
 }
 
-const updateWindowBodyClass = () => {
+const updateDarkMode = () => {
     window.webContents.send('set-dark-mode', global.sharedObject.isDarkMode)
 }
 
-const createWindow = () => {
+const createWindow = (app, server) => {
     window = new BrowserWindow({
-        width: 400,
-        height: 310,
+        width: 600,
+        height: 380,
         show: false,
         frame: false,
         resizable: false,
@@ -45,6 +45,12 @@ const createWindow = () => {
             nodeIntegration: true,
         }
     })
+
+    window.on('closed', () => {
+        window = null
+        server.kill(15)
+        app.quit()
+    });
 
     if (dev) {
         window.webContents.openDevTools()
@@ -108,5 +114,5 @@ module.exports = {
     createTray,
     createWindow,
     updateTrayIcon,
-    updateWindowBodyClass,
+    updateDarkMode,
 }

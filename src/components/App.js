@@ -3,7 +3,8 @@ import '../assets/css/App.css'
 import React, { Component, Fragment } from 'react'
 import { ipcRenderer, remote } from 'electron'
 import Header from './Header'
-import { Projects } from './panes'
+import { StateProvider } from './contexts/state';
+import PaneManager from './PaneManager';
 
 class App extends Component {
     constructor(props) {
@@ -13,37 +14,27 @@ class App extends Component {
             isDarkMode: remote.getGlobal('sharedObject').isDarkMode,
         }
 
-        this.events()
-    }
-
-    events() {
         ipcRenderer.on('set-dark-mode', (event, isDarkMode) => {
             this.setState({
                 isDarkMode: isDarkMode,
-          })
+            })
         })
     }
 
     render() {
         return (
-            <div className={this.state.isDarkMode ? 'dark' : 'light'}>
-                <div class="header-arrow"></div>
-                <div class="window">
-                    <Header />
+            <StateProvider>
+                <div className={this.state.isDarkMode ? 'dark' : 'light'}>
+                    <div className="header-arrow"></div>
+                    <div className="window">
+                        <Header />
 
-                    <div class="window-content">
-                        <Projects />
-                    </div>
-
-                    <footer class="toolbar toolbar-footer">
-                        <div class="toolbar-actions">
-                            <button class="btn btn-large btn-default pull-right">
-                                Quit
-                            </button>
+                        <div className="window-content">
+                            <PaneManager />
                         </div>
-                    </footer>
+                    </div>
                 </div>
-            </div>
+            </StateProvider>
         )
     }
 }

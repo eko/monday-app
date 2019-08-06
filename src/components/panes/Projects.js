@@ -24,16 +24,16 @@ class Projects extends Component {
 
     render() {
         return (
-            <div class="pane-group">
-                <div class="pane">
-                    <ul class="list-group">
-                        <li class="list-group-header">
-                            <input class="form-control" type="text" placeholder="Type the name of a project..." />
+            <div className="pane-group">
+                <div className="pane">
+                    <ul className="list-group">
+                        <li className="list-group-header">
+                            <input className="form-control" type="text" placeholder="Type the name of a project..." />
                         </li>
 
                         <div id="projects-list">
                             {this.state.projects.map(project => (
-                                <li class="list-group-item">
+                                <li key={project} className="list-group-item">
                                     <p>{project}</p>
                                 </li>
                             ))}

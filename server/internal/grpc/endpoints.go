@@ -2,6 +2,7 @@ package monday
 
 import (
 	context "context"
+	"os/exec"
 
 	"github.com/eko/monday/pkg/config"
 )
@@ -23,4 +24,27 @@ func (s *Server) GetProjects(ctx context.Context, empty *Empty) (*GetProjectsRes
 	return &GetProjectsResponse{
 		Projects: projects,
 	}, nil
+}
+
+// OpenConfigurationFiles returns the project names list
+func (s *Server) OpenConfigurationFiles(ctx context.Context, empty *Empty) (*Empty, error) {
+	files := config.FindMultipleConfigFiles()
+
+	// Check for single configuration file
+	err := config.CheckConfigFileExists()
+	if err != nil {
+		return nil, err
+	}
+
+	if len(files) == 0 {
+		files = []string{config.Filepath}
+	}
+
+	command := exec.Command("open", files...)
+
+	if err := command.Start(); err != nil {
+		return nil, err
+	}
+
+	return &Empty{}, nil
 }

@@ -1,33 +1,52 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
+import { Settings, Projects } from '../components/panes'
+import { useStateValue } from './contexts/state'
+import { ipcRenderer } from 'electron';
 
-class Header extends Component {
-    render() {
-        return (
-            <header class="toolbar toolbar-header">
-                <h1 class="title">Monday</h1>
+const Header = () => {
+    const [{ pane }, dispatch] = useStateValue()
 
-                <div class="toolbar-actions">
-                    <div class="btn-group pull-left">
-                        <button class="btn btn-large btn-default active">
-                            <span class="icon icon-home"></span>
-                        </button>
+    const handleQuit = () => {
+        ipcRenderer.send('quit')
+    }
 
-                        <button class="btn btn-large btn-default">
-                            <span class="icon icon-megaphone"></span>
-                        </button>
+    return (
+        <header className="toolbar toolbar-header">
+            <h1 className="title">Monday</h1>
 
-                        <button class="btn btn-large btn-default">
-                            <span class="icon icon-arrows-ccw"></span>
-                        </button>
-                    </div>
+            <div className="toolbar-actions">
+                <div className="btn-group pull-left">
+                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Projects' ? 'active' : '')} onClick={() => dispatch({
+                        type: 'changePane',
+                        newPane: <Projects />,
+                    })}>
+                        <span className="icon icon-home"></span>
+                    </button>
 
-                    <button class="btn btn-large btn-default pull-right">
-                        <span class="icon icon-cog"></span>
+                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Logs' ? 'active' : '')}>
+                        <span className="icon icon-megaphone"></span>
+                    </button>
+
+                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Something' ? 'active' : '')}>
+                        <span className="icon icon-arrows-ccw"></span>
                     </button>
                 </div>
-            </header>
-        )
-    }
+
+                <div className="btn-group pull-right">
+                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Settings' ? 'active' : '')} onClick={() => dispatch({
+                        type: 'changePane',
+                        newPane: <Settings />,
+                    })}>
+                        <span className="icon icon-cog"></span>
+                    </button>
+
+                    <button className="btn btn-large btn-default" onClick={handleQuit}>
+                        Quit
+                    </button>
+                </div>
+            </div>
+        </header>
+    )
 }
 
 export default Header

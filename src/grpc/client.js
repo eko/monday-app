@@ -1,7 +1,7 @@
 const grpc = require('grpc')
 const protoLoader = require('@grpc/proto-loader')
 
-const packageDefinition = protoLoader.loadSync('./proto/monday.proto', {
+const packageDefinition = protoLoader.loadSync('proto/monday.proto', {
     keepCase: true,
     longs: String,
     enums: String,

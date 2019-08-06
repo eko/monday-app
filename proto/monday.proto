@@ -4,6 +4,7 @@ package monday;
 
 service MondayService {
   rpc GetProjects(Empty) returns (GetProjectsResponse) {}
+  rpc OpenConfigurationFiles(Empty) returns (Empty) {}
 }
 
 message Empty {}

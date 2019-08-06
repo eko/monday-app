@@ -40,6 +40,18 @@ div.dark .btn.btn-default {
     color: #ffffff;
 }
 
+div.dark .btn.btn-default.active {
+    background-color: #212121;
+    background-image: -webkit-linear-gradient(top, #212121 0, #212121 100%);
+    background-image: linear-gradient(to bottom, #212121 0, #212121 100%);
+}
+
+div.dark .btn.btn-default:active {
+    background-color: #2b2b2b;
+    background-image: -webkit-linear-gradient(top, #2b2b2b 0, #2b2b2b 100%);
+    background-image: linear-gradient(to bottom, #2b2b2b 0, #2b2b2b 100%);
+}
+
 div.dark .list-group-item {
     color: #ffffff;
     border-top: 1px solid #464646;

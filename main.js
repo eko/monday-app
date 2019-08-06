@@ -4,7 +4,9 @@ const { app, systemPreferences } = require('electron')
 const { spawn } = require('child_process')
 const sudo = require('sudo-prompt')
 
-const { createTray, createWindow, updateTrayIcon, updateWindowBodyClass } = require('./src/electron/window')
+const { createTray, createWindow, updateTrayIcon, updateDarkMode } = require('./src/electron/window')
+
+let server = null
 
 app.on('ready', () => {
   global.sharedObject = {
@@ -19,7 +21,7 @@ app.on('ready', () => {
       if (error) throw error
 
       // If authentication is successful, run the gRPC server
-      const server = spawn('./builds/server')
+      server = spawn('./builds/server')
 
       server.stdout.on('data', (data) => {
         console.log(`gRPC server stdout: ${data}`)
@@ -44,20 +46,16 @@ app.on('ready', () => {
   )
 })
 
-app.on('activate', () => {
-  createWindow()
-})
-
 const launchApplication = () => {
   createTray()
-  createWindow()
+  createWindow(app, server)
 }
 
 const themeHasChanged = () => {
   global.sharedObject.isDarkMode = systemPreferences.isDarkMode()
 
   updateTrayIcon()
-  updateWindowBodyClass()
+  updateDarkMode()
 }
 
 systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', themeHasChanged)
