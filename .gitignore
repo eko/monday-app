@@ -1,3 +1,20 @@
-/build
-/dist
-/node_modules
+# Build folder and files
+builds/
+
+# Development folders and files
+.tmp/
+dist/
+node_modules/
+*.compiled.*
+
+# Log files & folders #
+#######################
+logs/
+*.log
+npm-debug.log*
+.npm
+
+# Windows & Mac file caches
+.DS_Store
+Thumbs.db
+ehthumbs.db

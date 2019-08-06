@@ -22,6 +22,40 @@ You can download the latest version of the binary built for your architecture he
     [Linux](https://github.com/eko/it/releases/latest/download/monday-linux-arm)
 ]
 
+## Development
+
+### Package the application
+
+```
+npm run package
+```
+or
+```
+yarn package
+```
+
+### Run the app (dev)
+
+```
+npm run start
+```
+or
+```
+yarn start
+```
+
+### Run the app on production mode
+```
+npm run prod
+```
+```
+yarn prod
+```
+
+## Code of Conduct
+
+[Contributor Code of Conduct](code-of-conduct.md). By participating in this project you agree to abide by its terms.
+
 ## Community
 
 You can [join the community Slack space](https://join.slack.com/t/mondaytool/shared_invite/enQtNzE3NDAxNzIxNTQyLTBmNGU5YzAwNjRjY2IxY2MwZmM5Njg5N2EwY2NjYzEwZWExNWYyYTlmMzg5ZTBjNDRiOTUwYzM3ZDBhZTllOGM) to discuss about your issues, new features or anything else regarding Monday.

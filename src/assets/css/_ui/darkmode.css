@@ -1,0 +1,51 @@
+/** Dark mode */
+
+div.dark .header-arrow {
+    background-image: url(../img/dark/arrow-header.png);
+}
+
+div.dark header, div.dark footer {
+    background-color: #353535;
+    background-image: -webkit-linear-gradient(top, #272727 0, #353535 100%);
+    background-image: linear-gradient(to bottom, #353535 0, #272727 100%);
+    box-shadow: none;
+}
+
+div.dark .toolbar-header {
+    border-bottom: 1px solid #676767;
+}
+
+div.dark .toolbar-footer {
+    border-top: 1px solid #676767;
+}
+
+div.dark h1 {
+    color: #ffffff;
+}
+
+div.dark .window {
+    background-color: #1d1d1d;
+    color: #ffffff;
+}
+
+div.dark .btn .icon {
+    color: #ffffff;
+}
+
+div.dark .btn.btn-default {
+    background-color: #353535;
+    background-image: -webkit-linear-gradient(top, #272727 0, #353535 100%);
+    background-image: linear-gradient(to bottom, #353535 0, #272727 100%);
+    border-color: #676767 #676767 #676767;
+    color: #ffffff;
+}
+
+div.dark .list-group-item {
+    color: #ffffff;
+    border-top: 1px solid #464646;
+}
+
+div.dark .form-control {
+    background-color: #353535;
+    border: 1px solid #676767;
+}

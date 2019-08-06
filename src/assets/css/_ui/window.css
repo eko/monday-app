@@ -1,0 +1,19 @@
+/** Header */
+.header-arrow {
+    height: 10px;
+    background-image: url(../img/arrow-header.png);
+    background-position: center;
+    background-repeat: no-repeat
+}
+
+.window {
+    top: 10px !important;
+}
+
+li.list-group-item:hover {
+    background-color: #efefef;
+}
+
+li.list-group-item:focus {
+    background-color: #a1a1a1;
+}

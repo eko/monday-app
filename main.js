@@ -1,10 +1,16 @@
-const { app } = require('electron')
+'use strict'
+
+const { app, systemPreferences } = require('electron')
 const { spawn } = require('child_process')
 const sudo = require('sudo-prompt')
 
-const { createTray, createWindow } = require('./src/ui/window')
+const { createTray, createWindow, updateTrayIcon, updateWindowBodyClass } = require('./src/electron/window')
 
 app.on('ready', () => {
+  global.sharedObject = {
+    isDarkMode: systemPreferences.isDarkMode()
+  }
+
   var launched = false
 
   // Ask for root permissions
@@ -13,7 +19,7 @@ app.on('ready', () => {
       if (error) throw error
 
       // If authentication is successful, run the gRPC server
-      const server = spawn('./build/server')
+      const server = spawn('./builds/server')
 
       server.stdout.on('data', (data) => {
         console.log(`gRPC server stdout: ${data}`)
@@ -38,19 +44,26 @@ app.on('ready', () => {
   )
 })
 
+app.on('activate', () => {
+  createWindow()
+})
+
 const launchApplication = () => {
   createTray()
   createWindow()
 }
 
+const themeHasChanged = () => {
+  global.sharedObject.isDarkMode = systemPreferences.isDarkMode()
+
+  updateTrayIcon()
+  updateWindowBodyClass()
+}
+
+systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', themeHasChanged)
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
-  }
-})
-
-app.on('activate', () => {
-  if (win === null) {
-    createWindow()
   }
 })
