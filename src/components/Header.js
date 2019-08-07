@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react'
-import { Forwarder, Projects, Proxy, Runner, Settings } from '../components/panes'
-import { STATE_CHANGE_PANE, STATE_CHANGE_PROJECT } from './contexts/types'
 import { useStateValue } from './contexts/state'
+import Forwarder from '../components/panes/Forwarder'
+import Projects from '../components/panes/Projects'
+import Proxy from '../components/panes/Proxy'
+import Runner from '../components/panes/Runner'
+import Settings from '../components/panes/Settings'
+import { STATE_CHANGE_PANE, STATE_CHANGE_PROJECT } from './contexts/types'
 import { ipcRenderer } from 'electron'
 
 const Header = () => {

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { Projects } from '../panes'
+import Projects from '../panes/Projects'
 import { STATE_CHANGE_PANE, STATE_CHANGE_PROJECT } from './types'
 
 export const StateContext = createContext();
@@ -12,20 +12,18 @@ const initialState = {
 const reducer = (state, action) => {
     switch (action.type) {
         case STATE_CHANGE_PANE:
-            return {
-                ...state,
-                pane: action.pane
-            };
+            return Object.assign({}, state, {
+                pane: action.pane,
+            })
 
         case STATE_CHANGE_PROJECT:
-            return {
-                ...state,
+            return Object.assign({}, state, {
                 pane: action.pane,
-                project: action.project
-            };
+                project: action.project,
+            })
 
         default:
-            return state;
+            return state
     }
 }
 

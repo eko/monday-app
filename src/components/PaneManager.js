@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron'
 import React, { Fragment } from 'react'
 import { useStateValue } from './contexts/state'
 import { STATE_CHANGE_PROJECT } from './contexts/types'
-import { Runner } from './panes'
+import Runner from './panes/Runner'
 
 const PaneManager = (props) => {
     const [{ pane }, dispatch] = useStateValue()

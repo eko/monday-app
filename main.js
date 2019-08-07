@@ -1,7 +1,6 @@
 'use strict'
 
 const { app, systemPreferences } = require('electron')
-const { spawn } = require('child_process')
 const sudo = require('sudo-prompt')
 
 const { createTray, createWindow, updateTrayIcon, updateDarkMode } = require('./src/electron/window')
@@ -9,59 +8,48 @@ const { createTray, createWindow, updateTrayIcon, updateDarkMode } = require('./
 let server = null
 
 app.on('ready', () => {
-  global.sharedObject = {
-    isDarkMode: systemPreferences.isDarkMode()
-  }
-
-  var launched = false
-
-  // Ask for root permissions
-  sudo.exec('echo ok', { name: 'Monday' },
-    function (error, stdout, stderr) {
-      if (error) throw error
-
-      // If authentication is successful, run the gRPC server
-      server = spawn('./builds/server')
-
-      server.stdout.on('data', (data) => {
-        console.log(`gRPC server stdout: ${data}`)
-
-        if (!launched) {
-          launchApplication()
-        }
-
-        launched = true
-      })
-
-      server.stderr.on('data', (data) => {
-        console.log(`gRPC server stderr: ${data}`)
-        app.quit()
-      })
-
-      server.on('close', (code) => {
-        console.log(`gRPC server exited with code ${code}`)
-        app.quit()
-      })
+    global.sharedObject = {
+        isDarkMode: systemPreferences.isDarkMode()
     }
-  )
+
+    var launched = false
+
+    // Ask for root permissions
+    sudo.exec('./builds/server &', { name: 'Monday' },
+        function (error, stdout, stderr) {
+            if (error) {
+                console.log(error)
+                throw error
+            }
+
+            // If authentication is successful, run the gRPC server
+            console.log('gRPC server started')
+            console.log(`gRPC server stdout: ${stdout}`)
+
+            if (!launched) {
+                launchApplication()
+            }
+
+            launched = true
+        })
 })
 
 const launchApplication = () => {
-  createTray()
-  createWindow(app, server)
+    createTray()
+    createWindow(app, server)
 }
 
 const themeHasChanged = () => {
-  global.sharedObject.isDarkMode = systemPreferences.isDarkMode()
+    global.sharedObject.isDarkMode = systemPreferences.isDarkMode()
 
-  updateTrayIcon()
-  updateDarkMode()
+    updateTrayIcon()
+    updateDarkMode()
 }
 
 systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', themeHasChanged)
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 })

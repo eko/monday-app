@@ -4,7 +4,6 @@ div.logs-content {
     width: 100%;
     padding: 4px;
     overflow-y: scroll;
-    font-family: Arial, Helvetica, sans-serif;
     -webkit-touch-callout: text;
     -webkit-user-select: text;
     -khtml-user-select: text;

@@ -13,7 +13,7 @@ class Runner extends Component {
         this.events()
     }
 
-    scrollToBottom = () => {
+    scrollToBottom() {
         if (!this.logsElement) {
             return
         }
@@ -54,7 +54,6 @@ class Runner extends Component {
                 .replace(/\[0m/gmi, '</span>')
 
             this.setState({
-                ...this.state,
                 logs: content,
             })
             this.scrollToBottom()
