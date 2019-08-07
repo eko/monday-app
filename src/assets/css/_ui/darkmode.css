@@ -52,9 +52,19 @@ div.dark .btn.btn-default:active {
     background-image: linear-gradient(to bottom, #2b2b2b 0, #2b2b2b 100%);
 }
 
+div.dark .btn.btn-default:disabled {
+    background-color: #353535;
+    background-image: -webkit-linear-gradient(top, #353535 0, #353535 100%);
+    background-image: linear-gradient(to bottom, #353535 0, #353535 100%);
+}
+
 div.dark .list-group-item {
     color: #ffffff;
     border-top: 1px solid #464646;
+}
+
+div.dark .list-group-item:hover {
+    background-color: #464646;
 }
 
 div.dark .form-control {

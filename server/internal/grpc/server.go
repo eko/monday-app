@@ -4,19 +4,39 @@ import (
 	"fmt"
 	"net"
 
+	"github.com/eko/monday/pkg/config"
+	"github.com/eko/monday/pkg/forwarder"
+	"github.com/eko/monday/pkg/proxy"
+	"github.com/eko/monday/pkg/runner"
+	"github.com/eko/monday/pkg/ui"
+	"github.com/eko/monday/pkg/watcher"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+)
+
+var (
+	runnerComponent    runner.RunnerInterface
+	forwarderComponent forwarder.ForwarderInterface
+	proxyComponent     proxy.ProxyInterface
+	watcherComponent   watcher.WatcherInterface
+
+	logsView     ui.ViewInterface
+	forwardsView ui.ViewInterface
+	proxyView    ui.ViewInterface
 )
 
 // Server is the gRPC Server.
 type Server struct {
 	ready  bool
+	conf   *config.Config
 	server *grpc.Server
 }
 
 // NewServer create a Server.
-func NewServer() *Server {
-	return &Server{}
+func NewServer(conf *config.Config) *Server {
+	return &Server{
+		conf: conf,
+	}
 }
 
 // Listen start the server.
@@ -41,8 +61,17 @@ func (s *Server) Listen(port string) {
 	}
 }
 
+// stopComponents stops currently active components
+func (s *Server) stopComponents() {
+	forwarderComponent.Stop()
+	proxyComponent.Stop()
+	runnerComponent.Stop()
+	watcherComponent.Stop()
+}
+
 // Stop stops the server.
 func (s *Server) Stop() {
+	s.stopComponents()
 	s.server.GracefulStop()
 	s.ready = false
 }

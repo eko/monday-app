@@ -1,18 +1,27 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { Projects } from '../panes'
+import { STATE_CHANGE_PANE, STATE_CHANGE_PROJECT } from './types'
 
 export const StateContext = createContext();
 
 const initialState = {
     pane: <Projects />,
+    project: null,
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'changePane':
+        case STATE_CHANGE_PANE:
             return {
                 ...state,
-                pane: action.newPane
+                pane: action.pane
+            };
+
+        case STATE_CHANGE_PROJECT:
+            return {
+                ...state,
+                pane: action.pane,
+                project: action.project
             };
 
         default:

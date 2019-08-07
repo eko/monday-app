@@ -3,16 +3,49 @@ syntax = "proto3";
 package monday;
 
 service MondayService {
+  rpc GetLogs(GetLogsRequest) returns (GetLogsResponse) {}
   rpc GetProjects(Empty) returns (GetProjectsResponse) {}
+  rpc RunProject(RunProjectRequest) returns (RunProjectResponse) {}
+  rpc StopProject(Empty) returns (Empty) {}
   rpc OpenConfigurationFiles(Empty) returns (Empty) {}
 }
 
-message Empty {}
-
-message GetProjectsResponse {
-  repeated Project projects = 1;
-}
+// Object types
 
 message Project {
   string name = 1;
+  repeated Application applications = 2;
+  repeated Forward forwards = 3;
+}
+
+message Application {
+  string name = 1;
+}
+
+message Forward {
+  string name = 1;
+}
+
+// Request and Response types
+
+message Empty {}
+
+message GetLogsRequest {
+  string view = 1;
+}
+
+message GetLogsResponse {
+  string content = 1;
+}
+
+message GetProjectsResponse {
+  repeated string names = 1;
+}
+
+message RunProjectRequest {
+  string name = 1;
+}
+
+message RunProjectResponse {
+  Project project = 1;
 }

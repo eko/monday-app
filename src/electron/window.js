@@ -31,8 +31,8 @@ const updateDarkMode = () => {
 
 const createWindow = (app, server) => {
     window = new BrowserWindow({
-        width: 600,
-        height: 380,
+        width: 650,
+        height: 400,
         show: false,
         frame: false,
         resizable: false,

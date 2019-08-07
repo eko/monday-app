@@ -1,0 +1,22 @@
+/** Logs */
+
+div.logs-content {
+    width: 100%;
+    padding: 4px;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+span.log-error {
+    color: #ff7a7a;
+}
+
+span.log-success {
+    color: #7aff93;
+}

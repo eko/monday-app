@@ -17,3 +17,14 @@ li.list-group-item:hover {
 li.list-group-item:focus {
     background-color: #a1a1a1;
 }
+
+li.list-group-item p {
+    padding: 3px;
+}
+
+
+.btn.btn-default:disabled {
+    background-color: #e8e6e8;
+    background-image: -webkit-linear-gradient(top, #e8e6e8 0, #e8e6e8 100%);
+    background-image: linear-gradient(to bottom, #e8e6e8 0, #e8e6e8 100%);
+}

@@ -14,13 +14,20 @@ ipcMain.on('load-projects', (event) => {
             return
         }
 
-        var names = []
+        event.reply('projects-list', response.names)
+    })
+})
 
-        response.projects.forEach(project => {
-            names.push(project.name)
-        })
+ipcMain.on('run-project', (event, name) => {
+    console.log('[window] event triggered: run-project')
 
-        event.reply('projects-list', names)
+    client.runProject({ name: name }, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method runProject: ', error)
+            return
+        }
+
+        event.reply('project', response)
     })
 })
 
@@ -30,6 +37,57 @@ ipcMain.on('open-configuration-files', (event) => {
     client.openConfigurationFiles({}, function (error, response) {
         if (error) {
             console.log('Error when calling gRPC method openConfigurationFiles: ', error)
+            return
+        }
+    })
+})
+
+ipcMain.on('get-runner-logs', (event) => {
+    console.log('[window] event triggered: get-runner-logs')
+
+    client.getLogs({view: 'runner'}, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method getLogs: ', error)
+            return
+        }
+
+        event.reply('runner-logs', response.content)
+    })
+})
+
+ipcMain.on('get-forwarder-logs', (event) => {
+    console.log('[window] event triggered: get-forwarder-logs')
+
+    client.getLogs({ view: 'forwarder' }, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method getLogs: ', error)
+            return
+        }
+
+        event.reply('forwarder-logs', response.content)
+    })
+})
+
+ipcMain.on('get-proxy-logs', (event) => {
+    console.log('[window] event triggered: get-proxy-logs')
+
+    client.getLogs({ view: 'proxy' }, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method getLogs: ', error)
+            return
+        }
+
+        event.reply('proxy-logs', response.content)
+    })
+})
+
+ipcMain.on('stop', (event) => {
+    console.log('[window] event triggered: stop')
+
+    client.stopProject({}, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method stopProject: ', error)
+            return
         }
     })
 })

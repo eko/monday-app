@@ -3,8 +3,8 @@ import '../assets/css/App.css'
 import React, { Component, Fragment } from 'react'
 import { ipcRenderer, remote } from 'electron'
 import Header from './Header'
-import { StateProvider } from './contexts/state';
-import PaneManager from './PaneManager';
+import { StateProvider } from './contexts/state'
+import PaneManager from './PaneManager'
 
 class App extends Component {
     constructor(props) {

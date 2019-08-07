@@ -11,6 +11,8 @@ class Settings extends Component {
             <div className="padded">
                 <p>Monday configuration is managed by editing YAML configuration files.</p>
                 <button class="btn btn-large btn-default" onClick={this.handleOpenConfigurationFiles}>Open configuration files</button>
+
+                <hr />
             </div>
         )
     }

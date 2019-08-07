@@ -1,13 +1,29 @@
-import React from 'react'
-import { Settings, Projects } from '../components/panes'
+import React, { Fragment } from 'react'
+import { Forwarder, Projects, Proxy, Runner, Settings } from '../components/panes'
+import { STATE_CHANGE_PANE, STATE_CHANGE_PROJECT } from './contexts/types'
 import { useStateValue } from './contexts/state'
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron'
 
 const Header = () => {
-    const [{ pane }, dispatch] = useStateValue()
+    const [{ pane, project }, dispatch] = useStateValue()
+
+    const handleStop = () => {
+        ipcRenderer.send('stop')
+
+        dispatch({
+            type: STATE_CHANGE_PROJECT,
+            pane: <Projects />,
+            project: null,
+        })
+    }
 
     const handleQuit = () => {
         ipcRenderer.send('quit')
+    }
+
+    let currentPane = 'Projects'
+    if (pane.type) {
+        currentPane = pane.type.name
     }
 
     return (
@@ -16,26 +32,49 @@ const Header = () => {
 
             <div className="toolbar-actions">
                 <div className="btn-group pull-left">
-                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Projects' ? 'active' : '')} onClick={() => dispatch({
-                        type: 'changePane',
-                        newPane: <Projects />,
-                    })}>
-                        <span className="icon icon-home"></span>
-                    </button>
+                    {project === null &&
+                        <button className={'btn btn-large btn-default ' + (currentPane == 'Projects' ? 'active' : '')} onClick={() => dispatch({
+                            type: STATE_CHANGE_PANE,
+                            pane: <Projects />,
+                        })}>
+                            <span className="icon icon-home"></span> &nbsp; Projects
+                        </button>
+                    }
 
-                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Logs' ? 'active' : '')}>
-                        <span className="icon icon-megaphone"></span>
-                    </button>
+                    {project !== null &&
+                        <Fragment>
+                            <button className={'btn btn-large btn-default ' + (currentPane == 'Runner' ? 'active' : '')} onClick={() => dispatch({
+                                type: STATE_CHANGE_PANE,
+                                pane: <Runner project={project} />,
+                            })}>
+                                <span className="icon icon-megaphone"></span> &nbsp; Runner
+                            </button>
 
-                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Something' ? 'active' : '')}>
-                        <span className="icon icon-arrows-ccw"></span>
-                    </button>
+                            <button className={'btn btn-large btn-default ' + (currentPane == 'Forwarder' ? 'active' : '')} onClick={() => dispatch({
+                                type: STATE_CHANGE_PANE,
+                                pane: <Forwarder project={project} />,
+                            })}>
+                                <span className="icon icon-arrows-ccw"></span> &nbsp; Forwarder
+                            </button>
+
+                            <button className={'btn btn-large btn-default ' + (currentPane == 'Proxy' ? 'active' : '')} onClick={() => dispatch({
+                                type: STATE_CHANGE_PANE,
+                                pane: <Proxy project={project} />,
+                            })}>
+                                <span className="icon icon-arrows-ccw"></span> &nbsp; Proxy
+                            </button>
+
+                            <button className="btn btn-large btn-default" onClick={handleStop}>
+                                <span className="icon icon-stop"></span> &nbsp; Stop
+                            </button>
+                        </Fragment>
+                    }
                 </div>
 
                 <div className="btn-group pull-right">
-                    <button className={'btn btn-large btn-default ' + (pane.type.name == 'Settings' ? 'active' : '')} onClick={() => dispatch({
-                        type: 'changePane',
-                        newPane: <Settings />,
+                    <button className={'btn btn-large btn-default ' + (currentPane == 'Settings' ? 'active' : '')} onClick={() => dispatch({
+                        type: STATE_CHANGE_PANE,
+                        pane: <Settings />,
                     })}>
                         <span className="icon icon-cog"></span>
                     </button>

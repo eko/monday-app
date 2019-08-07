@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ipcRenderer } from 'electron'
+import ProjectItem from '../projects/ProjectItem'
 
 class Projects extends Component {
     constructor(props) {
@@ -32,10 +33,8 @@ class Projects extends Component {
                         </li>
 
                         <div id="projects-list">
-                            {this.state.projects.map(project => (
-                                <li key={project} className="list-group-item">
-                                    <p>{project}</p>
-                                </li>
+                            {this.state.projects.map(name => (
+                                <ProjectItem key={name} name={name} />
                             ))}
                         </div>
                     </ul>

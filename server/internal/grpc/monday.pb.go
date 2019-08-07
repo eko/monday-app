@@ -6,10 +6,9 @@ package monday
 import (
 	context "context"
 	fmt "fmt"
-	math "math"
-
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -23,88 +22,20 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Empty struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Empty) Reset()         { *m = Empty{} }
-func (m *Empty) String() string { return proto.CompactTextString(m) }
-func (*Empty) ProtoMessage()    {}
-func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a5b49cb27e638a9, []int{0}
-}
-
-func (m *Empty) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Empty.Unmarshal(m, b)
-}
-func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
-}
-func (m *Empty) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Empty.Merge(m, src)
-}
-func (m *Empty) XXX_Size() int {
-	return xxx_messageInfo_Empty.Size(m)
-}
-func (m *Empty) XXX_DiscardUnknown() {
-	xxx_messageInfo_Empty.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Empty proto.InternalMessageInfo
-
-type GetProjectsResponse struct {
-	Projects             []*Project `protobuf:"bytes,1,rep,name=projects,proto3" json:"projects,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *GetProjectsResponse) Reset()         { *m = GetProjectsResponse{} }
-func (m *GetProjectsResponse) String() string { return proto.CompactTextString(m) }
-func (*GetProjectsResponse) ProtoMessage()    {}
-func (*GetProjectsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a5b49cb27e638a9, []int{1}
-}
-
-func (m *GetProjectsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetProjectsResponse.Unmarshal(m, b)
-}
-func (m *GetProjectsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetProjectsResponse.Marshal(b, m, deterministic)
-}
-func (m *GetProjectsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetProjectsResponse.Merge(m, src)
-}
-func (m *GetProjectsResponse) XXX_Size() int {
-	return xxx_messageInfo_GetProjectsResponse.Size(m)
-}
-func (m *GetProjectsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetProjectsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetProjectsResponse proto.InternalMessageInfo
-
-func (m *GetProjectsResponse) GetProjects() []*Project {
-	if m != nil {
-		return m.Projects
-	}
-	return nil
-}
-
 type Project struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Name                 string         `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Applications         []*Application `protobuf:"bytes,2,rep,name=applications,proto3" json:"applications,omitempty"`
+	Forwards             []*Forward     `protobuf:"bytes,3,rep,name=forwards,proto3" json:"forwards,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
 func (m *Project) Reset()         { *m = Project{} }
 func (m *Project) String() string { return proto.CompactTextString(m) }
 func (*Project) ProtoMessage()    {}
 func (*Project) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1a5b49cb27e638a9, []int{2}
+	return fileDescriptor_1a5b49cb27e638a9, []int{0}
 }
 
 func (m *Project) XXX_Unmarshal(b []byte) error {
@@ -132,28 +63,364 @@ func (m *Project) GetName() string {
 	return ""
 }
 
+func (m *Project) GetApplications() []*Application {
+	if m != nil {
+		return m.Applications
+	}
+	return nil
+}
+
+func (m *Project) GetForwards() []*Forward {
+	if m != nil {
+		return m.Forwards
+	}
+	return nil
+}
+
+type Application struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Application) Reset()         { *m = Application{} }
+func (m *Application) String() string { return proto.CompactTextString(m) }
+func (*Application) ProtoMessage()    {}
+func (*Application) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{1}
+}
+
+func (m *Application) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Application.Unmarshal(m, b)
+}
+func (m *Application) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Application.Marshal(b, m, deterministic)
+}
+func (m *Application) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Application.Merge(m, src)
+}
+func (m *Application) XXX_Size() int {
+	return xxx_messageInfo_Application.Size(m)
+}
+func (m *Application) XXX_DiscardUnknown() {
+	xxx_messageInfo_Application.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Application proto.InternalMessageInfo
+
+func (m *Application) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type Forward struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Forward) Reset()         { *m = Forward{} }
+func (m *Forward) String() string { return proto.CompactTextString(m) }
+func (*Forward) ProtoMessage()    {}
+func (*Forward) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{2}
+}
+
+func (m *Forward) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Forward.Unmarshal(m, b)
+}
+func (m *Forward) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Forward.Marshal(b, m, deterministic)
+}
+func (m *Forward) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Forward.Merge(m, src)
+}
+func (m *Forward) XXX_Size() int {
+	return xxx_messageInfo_Forward.Size(m)
+}
+func (m *Forward) XXX_DiscardUnknown() {
+	xxx_messageInfo_Forward.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Forward proto.InternalMessageInfo
+
+func (m *Forward) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type Empty struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Empty) Reset()         { *m = Empty{} }
+func (m *Empty) String() string { return proto.CompactTextString(m) }
+func (*Empty) ProtoMessage()    {}
+func (*Empty) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{3}
+}
+
+func (m *Empty) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Empty.Unmarshal(m, b)
+}
+func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
+}
+func (m *Empty) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Empty.Merge(m, src)
+}
+func (m *Empty) XXX_Size() int {
+	return xxx_messageInfo_Empty.Size(m)
+}
+func (m *Empty) XXX_DiscardUnknown() {
+	xxx_messageInfo_Empty.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Empty proto.InternalMessageInfo
+
+type GetLogsRequest struct {
+	View                 string   `protobuf:"bytes,1,opt,name=view,proto3" json:"view,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetLogsRequest) Reset()         { *m = GetLogsRequest{} }
+func (m *GetLogsRequest) String() string { return proto.CompactTextString(m) }
+func (*GetLogsRequest) ProtoMessage()    {}
+func (*GetLogsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{4}
+}
+
+func (m *GetLogsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetLogsRequest.Unmarshal(m, b)
+}
+func (m *GetLogsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetLogsRequest.Marshal(b, m, deterministic)
+}
+func (m *GetLogsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetLogsRequest.Merge(m, src)
+}
+func (m *GetLogsRequest) XXX_Size() int {
+	return xxx_messageInfo_GetLogsRequest.Size(m)
+}
+func (m *GetLogsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetLogsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetLogsRequest proto.InternalMessageInfo
+
+func (m *GetLogsRequest) GetView() string {
+	if m != nil {
+		return m.View
+	}
+	return ""
+}
+
+type GetLogsResponse struct {
+	Content              string   `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetLogsResponse) Reset()         { *m = GetLogsResponse{} }
+func (m *GetLogsResponse) String() string { return proto.CompactTextString(m) }
+func (*GetLogsResponse) ProtoMessage()    {}
+func (*GetLogsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{5}
+}
+
+func (m *GetLogsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetLogsResponse.Unmarshal(m, b)
+}
+func (m *GetLogsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetLogsResponse.Marshal(b, m, deterministic)
+}
+func (m *GetLogsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetLogsResponse.Merge(m, src)
+}
+func (m *GetLogsResponse) XXX_Size() int {
+	return xxx_messageInfo_GetLogsResponse.Size(m)
+}
+func (m *GetLogsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetLogsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetLogsResponse proto.InternalMessageInfo
+
+func (m *GetLogsResponse) GetContent() string {
+	if m != nil {
+		return m.Content
+	}
+	return ""
+}
+
+type GetProjectsResponse struct {
+	Names                []string `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetProjectsResponse) Reset()         { *m = GetProjectsResponse{} }
+func (m *GetProjectsResponse) String() string { return proto.CompactTextString(m) }
+func (*GetProjectsResponse) ProtoMessage()    {}
+func (*GetProjectsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{6}
+}
+
+func (m *GetProjectsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetProjectsResponse.Unmarshal(m, b)
+}
+func (m *GetProjectsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetProjectsResponse.Marshal(b, m, deterministic)
+}
+func (m *GetProjectsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetProjectsResponse.Merge(m, src)
+}
+func (m *GetProjectsResponse) XXX_Size() int {
+	return xxx_messageInfo_GetProjectsResponse.Size(m)
+}
+func (m *GetProjectsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetProjectsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetProjectsResponse proto.InternalMessageInfo
+
+func (m *GetProjectsResponse) GetNames() []string {
+	if m != nil {
+		return m.Names
+	}
+	return nil
+}
+
+type RunProjectRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RunProjectRequest) Reset()         { *m = RunProjectRequest{} }
+func (m *RunProjectRequest) String() string { return proto.CompactTextString(m) }
+func (*RunProjectRequest) ProtoMessage()    {}
+func (*RunProjectRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{7}
+}
+
+func (m *RunProjectRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RunProjectRequest.Unmarshal(m, b)
+}
+func (m *RunProjectRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RunProjectRequest.Marshal(b, m, deterministic)
+}
+func (m *RunProjectRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RunProjectRequest.Merge(m, src)
+}
+func (m *RunProjectRequest) XXX_Size() int {
+	return xxx_messageInfo_RunProjectRequest.Size(m)
+}
+func (m *RunProjectRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RunProjectRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RunProjectRequest proto.InternalMessageInfo
+
+func (m *RunProjectRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type RunProjectResponse struct {
+	Project              *Project `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RunProjectResponse) Reset()         { *m = RunProjectResponse{} }
+func (m *RunProjectResponse) String() string { return proto.CompactTextString(m) }
+func (*RunProjectResponse) ProtoMessage()    {}
+func (*RunProjectResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1a5b49cb27e638a9, []int{8}
+}
+
+func (m *RunProjectResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RunProjectResponse.Unmarshal(m, b)
+}
+func (m *RunProjectResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RunProjectResponse.Marshal(b, m, deterministic)
+}
+func (m *RunProjectResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RunProjectResponse.Merge(m, src)
+}
+func (m *RunProjectResponse) XXX_Size() int {
+	return xxx_messageInfo_RunProjectResponse.Size(m)
+}
+func (m *RunProjectResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RunProjectResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RunProjectResponse proto.InternalMessageInfo
+
+func (m *RunProjectResponse) GetProject() *Project {
+	if m != nil {
+		return m.Project
+	}
+	return nil
+}
+
 func init() {
-	proto.RegisterType((*Empty)(nil), "monday.Empty")
-	proto.RegisterType((*GetProjectsResponse)(nil), "monday.GetProjectsResponse")
 	proto.RegisterType((*Project)(nil), "monday.Project")
+	proto.RegisterType((*Application)(nil), "monday.Application")
+	proto.RegisterType((*Forward)(nil), "monday.Forward")
+	proto.RegisterType((*Empty)(nil), "monday.Empty")
+	proto.RegisterType((*GetLogsRequest)(nil), "monday.GetLogsRequest")
+	proto.RegisterType((*GetLogsResponse)(nil), "monday.GetLogsResponse")
+	proto.RegisterType((*GetProjectsResponse)(nil), "monday.GetProjectsResponse")
+	proto.RegisterType((*RunProjectRequest)(nil), "monday.RunProjectRequest")
+	proto.RegisterType((*RunProjectResponse)(nil), "monday.RunProjectResponse")
 }
 
 func init() { proto.RegisterFile("monday.proto", fileDescriptor_1a5b49cb27e638a9) }
 
 var fileDescriptor_1a5b49cb27e638a9 = []byte{
-	// 192 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xc9, 0xcd, 0xcf, 0x4b,
-	0x49, 0xac, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x83, 0xf0, 0x94, 0xd8, 0xb9, 0x58,
-	0x5d, 0x73, 0x0b, 0x4a, 0x2a, 0x95, 0x9c, 0xb8, 0x84, 0xdd, 0x53, 0x4b, 0x02, 0x8a, 0xf2, 0xb3,
-	0x52, 0x93, 0x4b, 0x8a, 0x83, 0x52, 0x8b, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x85, 0xb4, 0xb9, 0x38,
-	0x0a, 0xa0, 0x62, 0x12, 0x8c, 0x0a, 0xcc, 0x1a, 0xdc, 0x46, 0xfc, 0x7a, 0x50, 0x83, 0xa0, 0x6a,
-	0x83, 0xe0, 0x0a, 0x94, 0x64, 0xb9, 0xd8, 0xa1, 0x82, 0x42, 0x42, 0x5c, 0x2c, 0x79, 0x89, 0xb9,
-	0xa9, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x60, 0xb6, 0x51, 0x1b, 0x23, 0x17, 0xaf, 0x2f,
-	0x58, 0x6f, 0x70, 0x6a, 0x51, 0x59, 0x66, 0x72, 0xaa, 0x90, 0x35, 0x17, 0x37, 0x92, 0xa5, 0x42,
-	0xbc, 0x30, 0xa3, 0xc1, 0x4e, 0x92, 0x92, 0x86, 0x71, 0xb1, 0x38, 0x4c, 0x89, 0x41, 0xc8, 0x82,
-	0x4b, 0xcc, 0xbf, 0x20, 0x35, 0xcf, 0x39, 0x3f, 0x2f, 0x2d, 0x33, 0xbd, 0xb4, 0x28, 0xb1, 0x24,
-	0x33, 0x3f, 0xcf, 0x2d, 0x33, 0x27, 0x15, 0xc3, 0x1c, 0x54, 0xae, 0x12, 0x43, 0x12, 0x1b, 0x38,
-	0x0c, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x27, 0x2d, 0xcf, 0xb1, 0x13, 0x01, 0x00, 0x00,
+	// 374 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x93, 0x5f, 0x4f, 0xf2, 0x30,
+	0x14, 0xc6, 0x19, 0xbc, 0xb0, 0x97, 0x33, 0x90, 0x58, 0x0c, 0xce, 0x19, 0x13, 0x6c, 0x4c, 0xc4,
+	0x10, 0xb9, 0xc0, 0x0b, 0x4d, 0x34, 0x31, 0xc6, 0x00, 0x37, 0x1a, 0xcd, 0xf8, 0x04, 0x73, 0x14,
+	0x32, 0x03, 0x6d, 0x5d, 0x0b, 0x84, 0x6b, 0xbf, 0x95, 0x9f, 0xce, 0xd0, 0xb5, 0x30, 0xfe, 0x24,
+	0xde, 0xf5, 0xf4, 0xfc, 0x9e, 0xa7, 0xe7, 0x3c, 0xd9, 0xa0, 0x34, 0x61, 0x74, 0x10, 0x2c, 0x5a,
+	0x3c, 0x66, 0x92, 0xa1, 0x42, 0x52, 0xe1, 0x6f, 0x0b, 0xec, 0xf7, 0x98, 0x7d, 0x92, 0x50, 0x22,
+	0x04, 0xff, 0x68, 0x30, 0x21, 0xae, 0x55, 0xb7, 0x1a, 0x45, 0x5f, 0x9d, 0xd1, 0x2d, 0x94, 0x02,
+	0xce, 0xc7, 0x51, 0x18, 0xc8, 0x88, 0x51, 0xe1, 0x66, 0xeb, 0xb9, 0x86, 0xd3, 0xae, 0xb6, 0xb4,
+	0xd9, 0xd3, 0xba, 0xe7, 0x6f, 0x80, 0xa8, 0x09, 0xff, 0x87, 0x2c, 0x9e, 0x07, 0xf1, 0x40, 0xb8,
+	0x39, 0x25, 0xaa, 0x18, 0x51, 0x37, 0xb9, 0xf7, 0x57, 0x00, 0x3e, 0x07, 0x27, 0xe5, 0xb4, 0x6f,
+	0x10, 0x7c, 0x06, 0xb6, 0xd6, 0xed, 0x6d, 0xdb, 0x90, 0xef, 0x4c, 0xb8, 0x5c, 0xe0, 0x0b, 0x38,
+	0xe8, 0x11, 0xf9, 0xc2, 0x46, 0xc2, 0x27, 0x5f, 0x53, 0x22, 0xd4, 0x5a, 0xb3, 0x88, 0xcc, 0x0d,
+	0xbe, 0x3c, 0xe3, 0x26, 0x54, 0x56, 0x94, 0xe0, 0x8c, 0x0a, 0x82, 0x5c, 0xb0, 0x43, 0x46, 0x25,
+	0xa1, 0x52, 0x93, 0xa6, 0xc4, 0x4d, 0xa8, 0xf6, 0x88, 0xd4, 0x29, 0xad, 0x05, 0x47, 0x90, 0x5f,
+	0x3e, 0x2d, 0x5c, 0xab, 0x9e, 0x6b, 0x14, 0xfd, 0xa4, 0xc0, 0x97, 0x70, 0xe8, 0x4f, 0xa9, 0x86,
+	0x53, 0x23, 0xec, 0x4c, 0xfc, 0x08, 0x28, 0x0d, 0x6a, 0xd3, 0x2b, 0xb0, 0x79, 0x72, 0xa5, 0xe0,
+	0x54, 0x6a, 0x86, 0x34, 0xfd, 0xf6, 0x4f, 0x16, 0xca, 0xaf, 0xaa, 0xd7, 0x27, 0xf1, 0x2c, 0x0a,
+	0x09, 0x7a, 0x00, 0x5b, 0x6f, 0x85, 0x6a, 0x46, 0xb6, 0x19, 0x86, 0x77, 0xbc, 0x73, 0x9f, 0x3c,
+	0x8c, 0x33, 0xe8, 0x1e, 0x9c, 0xd4, 0x9a, 0xa8, 0x6c, 0x48, 0x95, 0xab, 0x77, 0x9a, 0x12, 0x6e,
+	0x47, 0x81, 0x33, 0xa8, 0x03, 0xb0, 0xde, 0x06, 0x9d, 0x18, 0x78, 0x27, 0x0a, 0xcf, 0xdb, 0xd7,
+	0x5a, 0xd9, 0x5c, 0x83, 0xd3, 0x97, 0x8c, 0x1b, 0x9f, 0xad, 0x19, 0x36, 0x4b, 0x9c, 0x41, 0x77,
+	0x50, 0x7b, 0xe3, 0x84, 0x3e, 0x33, 0x3a, 0x8c, 0x46, 0xd3, 0x58, 0x7d, 0x3d, 0xdd, 0x68, 0x4c,
+	0xc4, 0x5f, 0xca, 0x8f, 0x82, 0xfa, 0x0d, 0x6e, 0x7e, 0x03, 0x00, 0x00, 0xff, 0xff, 0x27, 0x31,
+	0xc6, 0x5f, 0x16, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -168,7 +435,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MondayServiceClient interface {
+	GetLogs(ctx context.Context, in *GetLogsRequest, opts ...grpc.CallOption) (*GetLogsResponse, error)
 	GetProjects(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetProjectsResponse, error)
+	RunProject(ctx context.Context, in *RunProjectRequest, opts ...grpc.CallOption) (*RunProjectResponse, error)
+	StopProject(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 	OpenConfigurationFiles(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 }
 
@@ -180,9 +450,36 @@ func NewMondayServiceClient(cc *grpc.ClientConn) MondayServiceClient {
 	return &mondayServiceClient{cc}
 }
 
+func (c *mondayServiceClient) GetLogs(ctx context.Context, in *GetLogsRequest, opts ...grpc.CallOption) (*GetLogsResponse, error) {
+	out := new(GetLogsResponse)
+	err := c.cc.Invoke(ctx, "/monday.MondayService/GetLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mondayServiceClient) GetProjects(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetProjectsResponse, error) {
 	out := new(GetProjectsResponse)
 	err := c.cc.Invoke(ctx, "/monday.MondayService/GetProjects", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mondayServiceClient) RunProject(ctx context.Context, in *RunProjectRequest, opts ...grpc.CallOption) (*RunProjectResponse, error) {
+	out := new(RunProjectResponse)
+	err := c.cc.Invoke(ctx, "/monday.MondayService/RunProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mondayServiceClient) StopProject(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/monday.MondayService/StopProject", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -200,12 +497,33 @@ func (c *mondayServiceClient) OpenConfigurationFiles(ctx context.Context, in *Em
 
 // MondayServiceServer is the server API for MondayService service.
 type MondayServiceServer interface {
+	GetLogs(context.Context, *GetLogsRequest) (*GetLogsResponse, error)
 	GetProjects(context.Context, *Empty) (*GetProjectsResponse, error)
+	RunProject(context.Context, *RunProjectRequest) (*RunProjectResponse, error)
+	StopProject(context.Context, *Empty) (*Empty, error)
 	OpenConfigurationFiles(context.Context, *Empty) (*Empty, error)
 }
 
 func RegisterMondayServiceServer(s *grpc.Server, srv MondayServiceServer) {
 	s.RegisterService(&_MondayService_serviceDesc, srv)
+}
+
+func _MondayService_GetLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MondayServiceServer).GetLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/monday.MondayService/GetLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MondayServiceServer).GetLogs(ctx, req.(*GetLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MondayService_GetProjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -222,6 +540,42 @@ func _MondayService_GetProjects_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MondayServiceServer).GetProjects(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MondayService_RunProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunProjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MondayServiceServer).RunProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/monday.MondayService/RunProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MondayServiceServer).RunProject(ctx, req.(*RunProjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MondayService_StopProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MondayServiceServer).StopProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/monday.MondayService/StopProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MondayServiceServer).StopProject(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -249,8 +603,20 @@ var _MondayService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*MondayServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "GetLogs",
+			Handler:    _MondayService_GetLogs_Handler,
+		},
+		{
 			MethodName: "GetProjects",
 			Handler:    _MondayService_GetProjects_Handler,
+		},
+		{
+			MethodName: "RunProject",
+			Handler:    _MondayService_RunProject_Handler,
+		},
+		{
+			MethodName: "StopProject",
+			Handler:    _MondayService_StopProject_Handler,
 		},
 		{
 			MethodName: "OpenConfigurationFiles",
