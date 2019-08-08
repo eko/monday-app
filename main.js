@@ -1,7 +1,7 @@
 'use strict'
 
 const { app, systemPreferences } = require('electron')
-const { exec } = require('child_process')
+const shellEnv = require('shell-env')
 const path = require('path')
 const sudo = require('sudo-prompt')
 
@@ -12,9 +12,21 @@ app.on('ready', () => {
         isDarkMode: systemPreferences.isDarkMode()
     }
 
+    const envVars = shellEnv.sync()
+
     // Ask for root permissions
     const serverpath = path.join(__dirname, 'dist', 'monday-server')
-    sudo.exec(serverpath + ' &', { name: 'Monday' },
+    sudo.exec(`${serverpath} &`, {
+        name: 'Monday',
+        env: {
+            'HOME': envVars.HOME || '',
+            'GOPATH': envVars.GOPATH || '',
+            'MONDAY_CONFIG_PATH': envVars.MONDAY_CONFIG_PATH || '',
+            'MONDAY_KUBE_CONFIG': envVars.MONDAY_KUBE_CONFIG || '',
+            'PATH': envVars.PATH || '',
+            'TERM': 'xterm',
+        },
+    },
         function (error, stdout, stderr) {
             if (error) throw error
             launchApplication()

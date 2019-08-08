@@ -45,6 +45,7 @@
     "grpc": "^1.22.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "shell-env": "^3.0.0",
     "sudo-prompt": "^9.0.0"
   },
   "devDependencies": {
