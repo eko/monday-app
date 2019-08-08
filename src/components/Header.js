@@ -68,7 +68,7 @@ const Header = () => {
                                 <span className="icon icon-arrows-ccw"></span> &nbsp; Proxy
                             </button>
 
-                            <button className="btn btn-large btn-default" onClick={handleStop}>
+                            <button className="btn btn-large btn-negative btn-default" onClick={handleStop}>
                                 <span className="icon icon-stop"></span> &nbsp; Stop
                             </button>
                         </Fragment>

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -16,7 +17,8 @@ var (
 func main() {
 	conf, err := config.Load()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		conf = &config.Config{}
 	}
 
 	stop := make(chan os.Signal, 1)

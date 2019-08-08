@@ -2,6 +2,7 @@ package monday
 
 import (
 	context "context"
+	"os"
 	"os/exec"
 	"syscall"
 
@@ -84,6 +85,26 @@ func (s *Server) StopProject(ctx context.Context, empty *Empty) (*Empty, error) 
 	return &Empty{}, nil
 }
 
+// InitConfigurationFile initializes a configuration file
+func (s *Server) InitConfigurationFile(ctx context.Context, empty *Empty) (*Empty, error) {
+	if _, err := os.Stat(config.Filepath); os.IsExist(err) {
+		return s.OpenConfigurationFiles(ctx, empty)
+	}
+
+	f, err := os.Create(config.Filepath)
+	f.Close()
+	if err != nil {
+		return nil, err
+	}
+
+	command := exec.Command("open", config.Filepath)
+	if err := command.Start(); err != nil {
+		return nil, err
+	}
+
+	return &Empty{}, nil
+}
+
 // OpenConfigurationFiles opens the configuration files in the  prefered editor
 func (s *Server) OpenConfigurationFiles(ctx context.Context, empty *Empty) (*Empty, error) {
 	files := config.FindMultipleConfigFiles()
@@ -103,6 +124,18 @@ func (s *Server) OpenConfigurationFiles(ctx context.Context, empty *Empty) (*Emp
 	if err := command.Start(); err != nil {
 		return nil, err
 	}
+
+	return &Empty{}, nil
+}
+
+// ReloadConfiguration initializes a configuration file
+func (s *Server) ReloadConfiguration(ctx context.Context, empty *Empty) (*Empty, error) {
+	conf, err := config.Load()
+	if err != nil {
+		return nil, err
+	}
+
+	s.conf = conf
 
 	return &Empty{}, nil
 }

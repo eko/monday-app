@@ -28,3 +28,17 @@ li.list-group-item p {
     background-image: -webkit-linear-gradient(top, #e8e6e8 0, #e8e6e8 100%);
     background-image: linear-gradient(to bottom, #e8e6e8 0, #e8e6e8 100%);
 }
+
+/** Projects initialization */
+
+div.projects-init p {
+    padding: 2px;
+}
+
+div.projects-init button.btn.initialize {
+    margin: 20px 35%;
+}
+
+div.projects-init button.btn.reload {
+    margin: 20px 40%;
+}

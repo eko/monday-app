@@ -1,4 +1,4 @@
-const { ipcMain, ipcRenderer } = require('electron')
+const { ipcMain } = require('electron')
 const { client } = require('../grpc/client')
 
 ipcMain.on('show-window', () => {
@@ -9,12 +9,15 @@ ipcMain.on('load-projects', (event) => {
     console.log('[window] event triggered: load-projects')
 
     client.getProjects({}, function (error, response) {
+        let names = []
+
         if (error) {
             console.log('Error when calling gRPC method getProjects: ', error)
-            return
+        } else {
+            names = response.names
         }
 
-        event.reply('projects-list', response.names)
+        event.reply('projects-list', names)
     })
 })
 
@@ -31,6 +34,17 @@ ipcMain.on('run-project', (event, name) => {
     })
 })
 
+ipcMain.on('init-configuration-file', (event) => {
+    console.log('[window] event triggered: init-configuration-file')
+
+    client.initConfigurationFile({}, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method initConfigurationFile: ', error)
+            return
+        }
+    })
+})
+
 ipcMain.on('open-configuration-files', (event) => {
     console.log('[window] event triggered: open-configuration-files')
 
@@ -39,6 +53,19 @@ ipcMain.on('open-configuration-files', (event) => {
             console.log('Error when calling gRPC method openConfigurationFiles: ', error)
             return
         }
+    })
+})
+
+ipcMain.on('reload-configuration', (event) => {
+    console.log('[window] event triggered: reload-configuration')
+
+    client.reloadConfiguration({}, function (error, response) {
+        if (error) {
+            console.log('Error when calling gRPC method reloadConfiguration: ', error)
+            return
+        }
+
+        event.reply('reload-projects')
     })
 })
 
