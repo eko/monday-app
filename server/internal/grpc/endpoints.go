@@ -3,6 +3,7 @@ package monday
 import (
 	context "context"
 	"os/exec"
+	"syscall"
 
 	serverui "../ui"
 
@@ -102,6 +103,13 @@ func (s *Server) OpenConfigurationFiles(ctx context.Context, empty *Empty) (*Emp
 	if err := command.Start(); err != nil {
 		return nil, err
 	}
+
+	return &Empty{}, nil
+}
+
+// Quit quits the server
+func (s *Server) Quit(ctx context.Context, empty *Empty) (*Empty, error) {
+	s.stop <- syscall.SIGINT
 
 	return &Empty{}, nil
 }

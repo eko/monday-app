@@ -94,5 +94,12 @@ ipcMain.on('stop', (event) => {
 
 ipcMain.on('quit', (event) => {
     console.log('[window] event triggered: quit')
-    window.destroy()
+
+    client.quit({}, (error, response) => {
+        if (error) {
+            console.log('Error when calling gRPC method quit: ', error)
+        }
+
+        window.destroy()
+    })
 })

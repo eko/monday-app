@@ -1,7 +1,9 @@
 const grpc = require('grpc')
+const path = require('path')
 const protoLoader = require('@grpc/proto-loader')
 
-const packageDefinition = protoLoader.loadSync('proto/monday.proto', {
+const filepath = path.join(__dirname, '..', '..', 'proto', 'monday.proto')
+const packageDefinition = protoLoader.loadSync(filepath, {
     keepCase: true,
     longs: String,
     enums: String,

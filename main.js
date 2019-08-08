@@ -1,42 +1,30 @@
 'use strict'
 
 const { app, systemPreferences } = require('electron')
+const { exec } = require('child_process')
+const path = require('path')
 const sudo = require('sudo-prompt')
 
 const { createTray, createWindow, updateTrayIcon, updateDarkMode } = require('./src/electron/window')
-
-let server = null
 
 app.on('ready', () => {
     global.sharedObject = {
         isDarkMode: systemPreferences.isDarkMode()
     }
 
-    var launched = false
-
     // Ask for root permissions
-    sudo.exec('./builds/server &', { name: 'Monday' },
+    const serverpath = path.join(__dirname, 'dist', 'monday-server')
+    sudo.exec(serverpath + ' &', { name: 'Monday' },
         function (error, stdout, stderr) {
-            if (error) {
-                console.log(error)
-                throw error
-            }
-
-            // If authentication is successful, run the gRPC server
-            console.log('gRPC server started')
-            console.log(`gRPC server stdout: ${stdout}`)
-
-            if (!launched) {
-                launchApplication()
-            }
-
-            launched = true
-        })
+            if (error) throw error
+            launchApplication()
+        }
+    )
 })
 
 const launchApplication = () => {
     createTray()
-    createWindow(app, server)
+    createWindow(app)
 }
 
 const themeHasChanged = () => {
@@ -49,7 +37,5 @@ const themeHasChanged = () => {
 systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', themeHasChanged)
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
+    app.quit()
 })

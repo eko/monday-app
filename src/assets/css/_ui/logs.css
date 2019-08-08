@@ -2,7 +2,7 @@
 
 div.logs-content {
     width: 100%;
-    padding: 4px;
+    padding: 0.8em;
     overflow-y: scroll;
     -webkit-touch-callout: text;
     -webkit-user-select: text;

@@ -3,6 +3,7 @@ package monday
 import (
 	"fmt"
 	"net"
+	"os"
 
 	"github.com/eko/monday/pkg/config"
 	"github.com/eko/monday/pkg/forwarder"
@@ -30,12 +31,14 @@ type Server struct {
 	ready  bool
 	conf   *config.Config
 	server *grpc.Server
+	stop   chan os.Signal
 }
 
 // NewServer create a Server.
-func NewServer(conf *config.Config) *Server {
+func NewServer(conf *config.Config, stop chan os.Signal) *Server {
 	return &Server{
 		conf: conf,
+		stop: stop,
 	}
 }
 

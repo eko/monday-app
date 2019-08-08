@@ -6,7 +6,7 @@ require('./events')
 
 let dev = false
 
-if (process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath)) {
+if (process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath)) {
   dev = true
 }
 
@@ -29,7 +29,7 @@ const updateDarkMode = () => {
     window.webContents.send('set-dark-mode', global.sharedObject.isDarkMode)
 }
 
-const createWindow = (app, server) => {
+const createWindow = (app) => {
     window = new BrowserWindow({
         width: 650,
         height: 400,
@@ -48,7 +48,6 @@ const createWindow = (app, server) => {
 
     window.on('closed', () => {
         window = null
-        server.kill(15)
         app.quit()
     });
 

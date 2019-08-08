@@ -8,6 +8,7 @@ service MondayService {
   rpc RunProject(RunProjectRequest) returns (RunProjectResponse) {}
   rpc StopProject(Empty) returns (Empty) {}
   rpc OpenConfigurationFiles(Empty) returns (Empty) {}
+  rpc Quit(Empty) returns (Empty) {}
 }
 
 // Object types

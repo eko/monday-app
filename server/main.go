@@ -19,17 +19,18 @@ func main() {
 		panic(err)
 	}
 
-	s = monday.NewServer(conf)
+	stop := make(chan os.Signal, 1)
+	s = monday.NewServer(conf, stop)
 
 	go s.Listen("52314")
 
-	handleExitSignal()
+	handleExitSignal(stop)
 }
 
-func handleExitSignal() {
-	stop := make(chan os.Signal, 1)
+func handleExitSignal(stop chan os.Signal) {
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 	signal.Notify(stop, os.Interrupt, syscall.SIGINT)
+	signal.Notify(stop, os.Interrupt, syscall.SIGKILL)
 
 	<-stop
 
