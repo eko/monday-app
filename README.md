@@ -4,6 +4,25 @@
 
 This is a GUI built with ElectronJS for the [Monday](https://github.com/eko/monday) project.
 
+## What Monday can do for you?
+✅ Define a unified way to setup applications for all your developers
+
+✅ Run your local applications
+
+✅ Hot reload your applications automatically when a change is made locally
+
+✅ Port-forward an application locally using a remote one on Kubernetes (targeting a pod via label) or over SSH
+
+✅ Forward traffic of a remote application over Kubernetes, SSH or TCP locally (see example forward types)
+
+✅ Auto reconnect when a port-forward connection is lost
+
+✅ Forward multiple times the same port locally, using an hostname
+
+## Overview
+
+// Screenshots
+
 ## Installation
 
 ### Download binary

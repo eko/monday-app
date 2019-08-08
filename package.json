@@ -36,7 +36,7 @@
     "package": "npm run build",
     "postpackage": "npm run package-darwin && npm run installer-darwin",
     "package-darwin": "electron-packager ./ --overwrite --platform=darwin --arch=x64 --prune=true --icon=src/assets/img/icon.icns --out=./builds",
-    "installer-darwin": "node_modules/.bin/electron-installer-dmg --icon=src/assets/img/icon.icns --out=builds/ builds/Monday-darwin-x64/Monday.app Monday"
+    "installer-darwin": "node_modules/.bin/electron-installer-dmg --icon=src/assets/img/icon.icns --out=builds/ builds/Monday-darwin-x64/Monday.app Monday-darwin-x64"
   },
   "dependencies": {
     "@grpc/proto-loader": "^0.5.1",

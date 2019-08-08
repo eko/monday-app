@@ -1,0 +1,26 @@
+language: node
+matrix:
+  include:
+    - "stable"
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+  - npm install
+
+script:
+  - npm run package
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: $GITHUB_TOKEN
+  file:
+    - builds/Monday-darwin-x64
+  on:
+    repo: eko/monday-app
+    tags: true
+    condition: $LATEST = true
