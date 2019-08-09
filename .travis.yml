@@ -3,15 +3,35 @@ language: node
 node_js:
   - '12'
 
+addons:
+  apt:
+    update: true
+
 cache:
   directories:
-    - "node_modules"
+    - node_modules
+    - builds/
 
 install:
   - npm install
 
-script:
-  - npm run package
+jobs:
+  include:
+    - stage: Packages for macOS
+      if: tag IS present
+      os: osx
+      osx_image: xcode11
+      script:
+        - npm run package-darwin
+        - npm run installer-darwin
+    - stage: Packages for linux
+      if: tag IS present
+      os: linux
+      dist: bionic
+      script:
+        - sudo apt-get install -y fakeroot
+        - npm run package-linux
+        - npm run installer-linux
 
 deploy:
   provider: releases
