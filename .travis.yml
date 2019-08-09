@@ -1,7 +1,7 @@
 language: node
-matrix:
-  include:
-    - "stable"
+
+node_js:
+  - '12'
 
 cache:
   directories:
@@ -19,8 +19,7 @@ deploy:
   api_key:
     secure: $GITHUB_TOKEN
   file:
-    - builds/Monday-darwin-x64
+    - builds/Monday-darwin-x64.dmg
   on:
     repo: eko/monday-app
     tags: true
-    condition: $LATEST = true
