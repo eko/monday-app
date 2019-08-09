@@ -4,6 +4,12 @@
 
 This is a GUI built with ElectronJS for the [Monday](https://github.com/eko/monday) project.
 
+In case you prefer to work with the CLI version, please go on the [Monday CLI repository](https://github.com/eko/monday).
+
+## Overview
+
+![Schema](https://github.com/eko/monday-app/blob/master/misc/showcase.jpg?raw=true)
+
 ## What Monday can do for you?
 ✅ Define a unified way to setup applications for all your developers
 
@@ -19,56 +25,24 @@ This is a GUI built with ElectronJS for the [Monday](https://github.com/eko/mond
 
 ✅ Forward multiple times the same port locally, using an hostname
 
-## Overview
-
-// Screenshots
-
 ## Installation
 
 ### Download binary
 
-You can download the latest version of the binary built for your architecture here:
-
-* Architecture **i386** [
-    [Darwin](https://github.com/eko/monday/releases/latest/download/monday-darwin-386) /
-    [Linux](https://github.com/eko/monday/releases/latest/download/monday-linux-386)
-]
-* Architecture **amd64** [
-    [Darwin](https://github.com/eko/monday/releases/latest/download/monday-darwin-amd64) /
-    [Linux](https://github.com/eko/monday/releases/latest/download/monday-linux-amd64)
-]
-* Architecture **arm** [
-    [Linux](https://github.com/eko/it/releases/latest/download/monday-linux-arm)
-]
+You can download the latest version of the binary built for your architecture (macOS or linux) here: https://github.com/eko/monday-app/releases/latest
 
 ## Development
-
-### Package the application
-
-```
-npm run package
-```
-or
-```
-yarn package
-```
 
 ### Run the app (dev)
 
 ```
 npm run start
 ```
-or
-```
-yarn start
-```
 
-### Run the app on production mode
+### Package the application
+
 ```
-npm run prod
-```
-```
-yarn prod
+npm run package
 ```
 
 ## Code of Conduct
