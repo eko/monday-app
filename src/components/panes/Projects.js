@@ -11,6 +11,7 @@ class Projects extends Component {
         }
 
         this.events()
+        this.handleSearch = this.handleSearch.bind(this)
     }
 
     events() {
@@ -27,6 +28,25 @@ class Projects extends Component {
         })
     }
 
+    handleSearch(event) {
+        const { projects } = this.state
+
+        if (event.target.value == 0) {
+            ipcRenderer.send('load-projects')
+        }
+
+        const searchValue = event.target.value.toLowerCase()
+        const filteredProjects = projects.filter(project => project.toLowerCase().includes(searchValue))
+
+        if (filteredProjects.length == 0) {
+            return
+        }
+
+        this.setState({
+            projects: filteredProjects,
+        })
+    }
+
     handleInitConfigurationFile() {
         ipcRenderer.send('init-configuration-file')
     }
@@ -39,8 +59,8 @@ class Projects extends Component {
         const { projects } = this.state
 
         let content = <div className="projects-init">
-            <p>You do not seems to have any configuration file.</p>
-            <p>Please click the button bellow to initialize a configuration file</p>
+            <p>You do not seems to have any configuration file. Please click the button bellow to initialize a configuration file</p>
+            <p>If you already have configuration files, please restart the application.</p>
 
             <button className="btn btn-large btn-default initialize" onClick={this.handleInitConfigurationFile}>Initialize configuration</button>
 
@@ -52,7 +72,7 @@ class Projects extends Component {
         if (projects.length > 0) {
             content = <ul className="list-group">
                 <li className="list-group-header">
-                    <input className="form-control" type="text" placeholder="Type the name of a project..." />
+                    <input className="form-control" type="text" placeholder="👏 Type the name of a project..." onKeyUp={this.handleSearch} />
                 </li>
 
                 <div id="projects-list">

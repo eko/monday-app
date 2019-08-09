@@ -1,3 +1,9 @@
+/** General */
+
+div.padded {
+    width: 100%;
+}
+
 /** Header */
 .header-arrow {
     height: 10px;
@@ -27,6 +33,14 @@ li.list-group-item p {
     background-color: #e8e6e8;
     background-image: -webkit-linear-gradient(top, #e8e6e8 0, #e8e6e8 100%);
     background-image: linear-gradient(to bottom, #e8e6e8 0, #e8e6e8 100%);
+}
+
+.btn .icon.icon-play {
+    color: #42ffab;
+}
+
+.btn .icon.icon-stop {
+    color: #fd7373;
 }
 
 /** Projects initialization */

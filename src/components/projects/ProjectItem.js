@@ -44,7 +44,9 @@ class ProjectItem extends Component {
         return (
             <li className={className} onMouseEnter={this.handleOnMouseEnter} onMouseLeave={this.handleOnMouseLeave}>
                 {current &&
-                    <button className="btn btn-default pull-right" onClick={this.handleRunProject}>Run this project</button>}
+                    <button className="btn btn-default pull-right" onClick={this.handleRunProject}>
+                        <span className="icon icon-play"></span> &nbsp; Run this project
+                    </button>}
                 <p>{name}</p>
             </li>
         )

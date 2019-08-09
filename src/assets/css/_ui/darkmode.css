@@ -32,6 +32,14 @@ div.dark .btn .icon {
     color: #ffffff;
 }
 
+div.dark .btn .icon.icon-play {
+    color: #42ffab;
+}
+
+div.dark .btn .icon.icon-stop {
+    color: #fd7373;
+}
+
 div.dark .btn.btn-default {
     background-color: #353535;
     background-image: -webkit-linear-gradient(top, #272727 0, #353535 100%);

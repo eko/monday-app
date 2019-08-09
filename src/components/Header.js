@@ -58,14 +58,14 @@ const Header = () => {
                                 type: STATE_CHANGE_PANE,
                                 pane: <Forwarder project={project} />,
                             })}>
-                                <span className="icon icon-arrows-ccw"></span> &nbsp; Forwarder
+                                <span className="icon icon-switch"></span> &nbsp; Forwarder
                             </button>
 
                             <button className={'btn btn-large btn-default ' + (currentPane == 'Proxy' ? 'active' : '')} onClick={() => dispatch({
                                 type: STATE_CHANGE_PANE,
                                 pane: <Proxy project={project} />,
                             })}>
-                                <span className="icon icon-arrows-ccw"></span> &nbsp; Proxy
+                                <span className="icon icon-flow-parallel"></span> &nbsp; Proxy
                             </button>
 
                             <button className="btn btn-large btn-negative btn-default" onClick={handleStop}>
