@@ -11,7 +11,7 @@ app.dock.hide()
 
 app.on('ready', () => {
     global.sharedObject = {
-        isDarkMode: systemPreferences.isDarkMode()
+        isDarkMode: 'darwin' == process.platform ? systemPreferences.isDarkMode() : false
     }
 
     const envVars = shellEnv.sync()
@@ -48,7 +48,9 @@ const themeHasChanged = () => {
     updateDarkMode()
 }
 
-systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', themeHasChanged)
+if ('darwin' == process.platform) {
+    systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', themeHasChanged)
+}
 
 app.on('window-all-closed', () => {
     app.quit()
