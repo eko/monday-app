@@ -21,8 +21,12 @@ jobs:
       osx_image: xcode11
       script:
         - npm install
+        - npm rebuild --build-from-source=grpc --target=6.0.0 --runtime=electron --dist-url=https://atom.io/download/electron # Needed by Electron to work with gRPC
+        - npm run build
         - npm run package-darwin
+        - npm rebuild --build-from-source=macos-alias
         - npm run installer-darwin
+        - npm run installer-darwin-zip
 
     - stage: Packages for linux
       if: tag IS present
@@ -31,7 +35,11 @@ jobs:
       script:
         - sudo apt-get install -y fakeroot rpm
         - npm install
+        - npm rebuild --build-from-source=grpc --target=6.0.0 --runtime=electron --dist-url=https://atom.io/download/electron # Needed by Electron to work with gRPC
+        - npm run build
         - npm run package-linux
+        - npm rebuild --build-from-source=macos-alias
+        - npm run installer-linux-zip
         - npm run installer-debian
         - npm run installer-redhat
 
@@ -42,6 +50,8 @@ deploy:
     secure: $GITHUB_TOKEN
   file:
     - builds/Monday-darwin-x64.dmg
+    - builds/Monday-darwin-x64.zip
+    - builds/Monday-linux-x64.zip
     - builds/monday_${TRAVIS_TAG}_amd64.deb
     - builds/Monday-${TRAVIS_TAG}-1.amd64.rpm
   on:
