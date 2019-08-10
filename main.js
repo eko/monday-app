@@ -7,7 +7,9 @@ const sudo = require('sudo-prompt')
 
 const { createTray, createWindow, updateTrayIcon, updateDarkMode } = require('./src/electron/window')
 
-app.dock.hide()
+if ('darwin' == process.platform) {
+    app.dock.hide()
+}
 
 app.on('ready', () => {
     global.sharedObject = {
