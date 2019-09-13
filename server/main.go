@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	monday "./internal/grpc"
+	monday "github.com/eko/monday-app/server/internal/grpc"
 	"github.com/eko/monday/pkg/config"
 )
 

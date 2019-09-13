@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"syscall"
 
-	serverui "../ui"
+	serverui "github.com/eko/monday-app/server/internal/ui"
 
 	"github.com/eko/monday/pkg/config"
 	"github.com/eko/monday/pkg/forwarder"
