@@ -19,8 +19,8 @@ github.com/dgrijalva/jwt-go v0.0.0-20160705203006-01aeca54ebda h1:NyywMz59neOoVR
 github.com/dgrijalva/jwt-go v0.0.0-20160705203006-01aeca54ebda/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/docker/spdystream v0.0.0-20160310174837-449fdfce4d96 h1:cenwrSVm+Z7QLSV/BsnenAOcDXdX4cMv4wP0B/5QbPg=
 github.com/docker/spdystream v0.0.0-20160310174837-449fdfce4d96/go.mod h1:Qh8CwZgvJUkLughtfhJv5dyTYa91l1fOUCrgjqmcifM=
-github.com/eko/monday v1.0.7 h1:wH8IxwwE9i2eNJPCAZbgIPXWtp0G9RiAwXutUF5uN7s=
-github.com/eko/monday v1.0.7/go.mod h1:T+cLCk6+AO0kUPvyUjenLxV7r5Uhhz4s8hyZhgX6sEU=
+github.com/eko/monday v1.0.8 h1:NK8JsnyCtJymwl9Dsz2nqdT6SNinWKZJ9oXeLsJ/aZE=
+github.com/eko/monday v1.0.8/go.mod h1:T+cLCk6+AO0kUPvyUjenLxV7r5Uhhz4s8hyZhgX6sEU=
 github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e h1:p1yVGRW3nmb85p1Sh1ZJSDm4A4iKLS5QNbvUHMgGu/M=
 github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e/go.mod h1:/Zj4wYkgs4iZTTu3o/KG3Itv/qCCa8VVMlb3i9OVuzc=
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=
