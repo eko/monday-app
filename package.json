@@ -36,7 +36,7 @@
     "package": "npm run build",
     "test": "echo 'no tests'",
     "postpackage": "npm run package-darwin && npm run package-linux && npm run installer-darwin-zip && npm run installer-darwin && npm run installer-linux-zip && npm run installer-debian && npm run installer-redhat",
-    "package-darwin": "electron-packager ./ --overwrite --platform=darwin --arch=x64 --prune=true --icon=src/assets/img/icon.icns --out=./builds",
+    "package-darwin": "electron-packager ./ --overwrite --platform=darwin --arch=x64 --prune=true --icon=src/assets/img/icon.icns --out=./builds --darwin-dark-mode-support",
     "package-linux": "electron-packager ./ --overwrite --platform=linux --arch=x64 --prune=true --icon=src/assets/img/icon-large.png --out=./builds",
     "installer-darwin": "electron-installer-dmg --icon=src/assets/img/icon.icns --out=builds/ builds/Monday-darwin-x64/Monday.app Monday-darwin-x64",
     "installer-darwin-zip": "electron-installer-zip builds/Monday-darwin-x64/ builds/Monday-darwin-x64.zip",
