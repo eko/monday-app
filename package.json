@@ -45,7 +45,7 @@
     "installer-redhat": "electron-installer-redhat --src builds/Monday-linux-x64 --dest builds/ --config config/builder-linux.json --arch amd64"
   },
   "dependencies": {
-    "@grpc/proto-loader": "^0.5.1",
+    "@grpc/proto-loader": "^0.5.3",
     "electron": "^6.0.2",
     "google-protobuf": "^3.9.0",
     "grpc": "^1.22.2",
