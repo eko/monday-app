@@ -48,7 +48,7 @@
     "@grpc/proto-loader": "^0.5.3",
     "electron": "^6.0.2",
     "google-protobuf": "^3.9.0",
-    "grpc": "^1.22.2",
+    "grpc": "^1.24.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "shell-env": "^3.0.0",
