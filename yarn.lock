@@ -2485,7 +2485,7 @@ electron-installer-common@^0.7.1:
     semver "^6.0.0"
     tmp-promise "^2.0.1"
 
-electron-installer-debian@^2.0.0:
+electron-installer-debian@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/electron-installer-debian/-/electron-installer-debian-2.0.1.tgz#79dd3f85ddd0651b8e13a83d7934e6de88925df3"
   integrity sha512-6/rgdWoezE5/JKSu6Y1mK3TT2lUeRKpviVoh063DKSLwcDPHQFgJ0/uDxqGppi3AF4du8n1vVio0VEkCEwlM1A==
