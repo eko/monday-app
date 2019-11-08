@@ -49,7 +49,7 @@
     "electron": "^6.0.2",
     "google-protobuf": "^3.10.0",
     "grpc": "^1.24.2",
-    "react": "^16.9.0",
+    "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "shell-env": "^3.0.0",
     "sudo-prompt": "^9.0.0"
