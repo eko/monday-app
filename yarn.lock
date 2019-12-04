@@ -3314,10 +3314,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-google-protobuf@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.11.0.tgz#9449d6029569aa4603fdaa154ec6a7681aea0787"
-  integrity sha512-Pni0ZGKZc/FpaRiz2n11+FfjzeuoUpnMdtuqoBUandjsEPsLDLh5C0yacl/bgNAFaZkyUgIGcGowW34u6mVWPw==
+google-protobuf@^3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.11.1.tgz#c1319e5fc8579394758c8a41699f0a2e3e950c38"
+  integrity sha512-1fdyssLSa7Dip+MDdluLl0uK+2rspgU1PrbdPJKt7hywqSl3+R27TkLYKuBn9dvOyr0VQ0cliQWlfMheW5WKqA==
 
 got@^9.6.0:
   version "9.6.0"
