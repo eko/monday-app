@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@grpc/proto-loader": "^0.5.3",
-    "electron": "^8.0.0",
+    "electron": "^8.0.1",
     "google-protobuf": "^3.11.3",
     "grpc": "^1.24.2",
     "react": "^16.12.0",
