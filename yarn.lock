@@ -5774,10 +5774,10 @@ postcss-pseudoelements@^5.0.0:
   dependencies:
     postcss "^6.0.0"
 
-postcss-pxtorem@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-pxtorem/-/postcss-pxtorem-5.0.0.tgz#b38c48892147e78f2313ef14e10383fd2311621e"
-  integrity sha512-YMYqzp3TgYz6P7JSG1TDTILhQz4y4lPNw46OQJHWrpJjrnj4A77PQ3lhPaa+R8GHoaHlx6IgIN2ghO4iHNDWrg==
+postcss-pxtorem@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/postcss-pxtorem/-/postcss-pxtorem-5.1.1.tgz#198a68c10f9ad2d42370ef66299d7b3168f8cffa"
+  integrity sha512-uvgIujL/pn0GbZ+rczESD2orHsbXrrCqi+q9wJO8PCk3ZGCoVVtu5hZTbtk+tbZHZP5UkTfCvqOrTZs9Ncqfsg==
   dependencies:
     postcss "^7.0.27"
 
