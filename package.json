@@ -55,7 +55,7 @@
     "sudo-prompt": "^9.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.7",
+    "@babel/core": "^7.9.0",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "babili-webpack-plugin": "^0.1.2",
