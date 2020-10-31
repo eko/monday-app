@@ -52,7 +52,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "shell-env": "^3.0.0",
-    "sudo-prompt": "^9.1.1"
+    "sudo-prompt": "^9.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
